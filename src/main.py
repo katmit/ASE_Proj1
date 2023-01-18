@@ -9,8 +9,9 @@ random_instance = random.Random()
 seed = 937162211 
 dump = False
 
+
 def run_tests():
-    print("\nExecuting tests...\n")
+    print("Executing tests...\n")
     
     passCount = 0
     failCount = 0
@@ -27,7 +28,7 @@ def run_tests():
 
 
 def find_arg_value(args: list[str], optionA: str, optionB: str) -> str:
-    index = args.index(optionA) if 's' in args else args.index(optionB)
+    index = args.index(optionA) if optionA in args else args.index(optionB)
     if (index + 1) < len(args):
         return args[index + 1]
     return None
@@ -50,17 +51,17 @@ if __name__ == "__main__":
     if '-h' in args or '--help' in args:
         print(help_string)
 
-    if 'd' in args or '--dump' in args:
-        dump_value = find_arg_value('d', '--dump')
+    if '-d' in args or '--dump' in args:
+        dump_value = find_arg_value(args, 'd', '--dump')
         if dump_value is not None:
             dump_value_lower = dump_value.lower()
             dump = True if dump_value_lower.contains('true') else False
 
-    if 's' in args or '--seed' in args:
-        seed_value = find_arg_value('s', '--seed')
+    if '-s' in args or '--seed' in args:
+        seed_value = find_arg_value(args, '-s', '--seed')
         if seed_value is not None:
             try:
-                seed = int(args[seed + 1])
+                seed = int(seed_value)
             except ValueError:
                 print("Seed value must be an integer!")
         else:
