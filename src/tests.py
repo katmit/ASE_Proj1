@@ -1,11 +1,15 @@
 #test suite!
 
 import random
-import helpers
+import math
 
 from main import seed, dump
 from num import Num
 from sym import Sym
+
+def round(n, nPlaces = 3):
+    mult = math.pow(10, nPlaces)
+    return math.floor(n*mult + 0.5) / mult
 
 def show_settings_test():
     #todo, i'm not sure how to do this
@@ -29,10 +33,10 @@ def test_num_generation_rand() -> bool:
         val = temp_random.randrange(0, 2)
         num2.add(val)
 
-    m1 = helpers.rnd(num1.mid(), 10)
-    m2 = helpers.rnd(num2.mid(), 10)
+    m1 = round(num1.mid(), 10)
+    m2 = round(num2.mid(), 10)
 
-    return (m1 == m2) and helpers.rnd(m1, 1) == 0.5
+    return (m1 == m2) and round(m1, 1) == 0.5
 
 
 def test_syms():
@@ -41,7 +45,7 @@ def test_syms():
     for value in values:
         sym.add(value)
 
-    return ('a' == sym.mid()) and (1.379 == helpers.rnd(sym.div()))
+    return ('a' == sym.mid()) and (1.379 == round(sym.div()))
 
 def test_nums():
     num = Num()
@@ -49,4 +53,4 @@ def test_nums():
     for value in values:
         num.add(value)
     
-    return ((11/ 7) == num.mid()) and (0.787 == helpers.rnd(num.div()))
+    return ((11/ 7) == num.mid()) and (0.787 == round(num.div()))

@@ -1,4 +1,5 @@
 import math
+
 class Sym:
 
     def __init__(self):
