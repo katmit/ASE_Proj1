@@ -6,8 +6,8 @@ class Num:
         self.mu = 0
         self.m2 = 0
 
-        self.lo = float('-inf')
-        self.hi = float('inf')
+        self.lo = float('inf')
+        self.hi = float('-inf')
 
 
     def add(self, value: float):
