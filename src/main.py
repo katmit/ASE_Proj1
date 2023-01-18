@@ -1,29 +1,72 @@
-import re,math
 
-class main:
+import sys
+import random
 
-    # Numerics 
-    Seed = 937162211
-    rand =0
-    rint =0
-    rnd =0
+import tests
 
-    def rand(lo , hi):
-        lo = lo or 0
-        hi = hi or 1
-        Seed = (16807 * Seed ) % 2147483647
+# set to their default values
+random_instance = random.Random()
+seed = 937162211 
+dump = False
 
-    def rint(lo, hi):
-        return math.floor(0.5 + rand(lo,hi))
+def run_tests():
+    print("\nExecuting tests...\n")
+    
+    passCount = 0
+    failCount = 0
+    test_suite = [tests.test_num_generation_rand, tests.test_syms, tests.test_nums]
 
-    def rnd(n, nPlaces):
-        mult = math.pow(10, nplaces or 3)
-        return math.floor(n*mult + 0.5)/mult
+    for test in test_suite:
+        if(test()):
+            passCount = passCount + 1
+        else:
+            failCount = failCount + 1
+    
+    print("Passing: " + str(passCount) + "\nFailing: " + str(failCount))
 
 
-    # Lists
 
+def find_arg_value(args: list[str], optionA: str, optionB: str) -> str:
+    index = args.index(optionA) if 's' in args else args.index(optionB)
+    if (index + 1) < len(args):
+        return args[index + 1]
+    return None
 
-    # Strings
+help_string = """script.py : an example script with help text and a test suite.\n
+based on the original script (script.lua) by Tim Menzies <timm@ieee.org>\n
+\n
+USAGE:   script.lua  [OPTIONS] [-g ACTION]
+OPTIONS:
+  -d  --dump  on crash, dump stack = false
+  -g  --go    start-up action      = data
+  -h  --help  show help            = false
+  -s  --seed  random number seed   = 937162211
+ACTIONS:
+]]"""
 
-    # Main
+if __name__ == "__main__":
+    args = sys.argv
+
+    if '-h' in args or '--help' in args:
+        print(help_string)
+
+    if 'd' in args or '--dump' in args:
+        dump_value = find_arg_value('d', '--dump')
+        if dump_value is not None:
+            dump_value_lower = dump_value.lower()
+            dump = True if dump_value_lower.contains('true') else False
+
+    if 's' in args or '--seed' in args:
+        seed_value = find_arg_value('s', '--seed')
+        if seed_value is not None:
+            try:
+                seed = int(args[seed + 1])
+            except ValueError:
+                print("Seed value must be an integer!")
+        else:
+            print("USAGE: Provide an integer value following an -s or --seed argument to set the seed value.\n Example: (-s 3030, --seed 3030)")
+    
+    # NOTE: the seed will be set in main, the rest of the application need not set it
+    random_instance.seed(seed)    
+    if '-g' in args or '--go' in args:
+        run_tests()
