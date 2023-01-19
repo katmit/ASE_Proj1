@@ -4,8 +4,10 @@ import random
 import math
 import os
 import sys
+import traceback
+
 sys.path.append(os.path.abspath('../'))
-from src.main import seed, dump
+from src.main import get_seed, should_dump, get_crashing_behavior_message
 from src.num import Num
 from src.sym import Sym
 
@@ -13,9 +15,19 @@ def round(n, nPlaces = 3):
     mult = math.pow(10, nPlaces)
     return math.floor(n*mult + 0.5) / mult
 
-def show_settings_test():
-    #todo, i'm not sure how to do this
-    pass
+def test_show_dump():
+    test_exception = Exception("This is a test exception")
+    try:
+        raise test_exception
+    except Exception as e:
+        expected_output = str(test_exception)
+        output = get_crashing_behavior_message(test_exception)
+
+        if should_dump():
+            return len(output) > len(expected_output) and expected_output in output
+        else:
+            return expected_output == output
+
 
 # "generate, reset, regenerate same"
 def test_num_generation_rand() -> bool:
@@ -23,13 +35,13 @@ def test_num_generation_rand() -> bool:
     num2 = Num()
 
     temp_random = random.Random()
-    temp_random.seed(seed)
+    temp_random.seed(get_seed())
 
     for i in range(1000):
         val = temp_random.randrange(0, 2)
         num1.add(val)
 
-    temp_random.seed(seed) #reset the random
+    temp_random.seed(get_seed()) #reset the random
 
     for i in range(1000):
         val = temp_random.randrange(0, 2)
