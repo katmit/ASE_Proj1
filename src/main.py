@@ -27,7 +27,7 @@ def run_tests():
 
 
 
-def find_arg_value(args: list(str), optionA: str, optionB: str) -> str:
+def find_arg_value(args: list[str], optionA: str, optionB: str) -> str:
     index = args.index(optionA) if optionA in args else args.index(optionB)
     if (index + 1) < len(args):
         return args[index + 1]
