@@ -9,7 +9,8 @@ random_instance = random.Random()
 seed = 937162211 
 dump = False
 
-
+## run_test counts the number of arguments that have been passed and failed and it also,
+## it displays the names tests passed and failed.
 def run_tests():
     print("Executing tests...\n")
     
@@ -26,7 +27,10 @@ def run_tests():
     print("Passing: " + str(passCount) + "\nFailing: " + str(failCount))
 
 
-
+## find_arg_values method gets the three parameter 
+# first it gets file name to run 
+# second it get option A (-h or -d or -s)
+# third is get option B (--help or --dump or --seed)
 def find_arg_value(args: list[str], optionA: str, optionB: str) -> str:
     index = args.index(optionA) if optionA in args else args.index(optionB)
     if (index + 1) < len(args):
