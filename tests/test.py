@@ -3,9 +3,9 @@
 import random
 import math
 
-from ASE_Proj1.src.main import seed, dump
-from ASE_Proj1.src.num import Num
-from ASE_Proj1.src.sym import Sym
+from src.main import seed, dump
+from src.num import Num
+from src.sym import Sym
 
 def round(n, nPlaces = 3):
     mult = math.pow(10, nPlaces)
