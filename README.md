@@ -5,6 +5,9 @@ add a shield for our automated tests
 ![GitHub](https://img.shields.io/github/license/katmit/ASE_Proj1)
 ![GitHub issues](https://img.shields.io/github/issues/katmit/ASE_Proj1)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/katmit/ASE_Proj1)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/katmit/ASE_Proj1/unit_tests.yml)
+![github workflow](https://github.com/katmit/ASE_Proj1/actions/workflows/unit_tests.yml/badge.svg)
+
 
 
 ASE Project 1<br>

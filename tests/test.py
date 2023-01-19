@@ -2,10 +2,12 @@
 
 import random
 import math
-
-from main import seed, dump
-from num import Num
-from sym import Sym
+import os
+import sys
+sys.path.append(os.path.abspath('../'))
+from src.main import seed, dump
+from src.num import Num
+from src.sym import Sym
 
 def round(n, nPlaces = 3):
     mult = math.pow(10, nPlaces)
