@@ -2,7 +2,9 @@
 
 import random
 import math
-
+import os
+import sys
+sys.path.append(os.path.abspath('../'))
 from src.main import seed, dump
 from src.num import Num
 from src.sym import Sym
