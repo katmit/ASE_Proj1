@@ -13,7 +13,7 @@ add a shield for our automated tests
 ASE Project 1<br>
 NCSU 2023
 
-Authors: Katherine Mitchell, Saunak Patel, Het Patel
+Authors: Katherine Mitchell, Shaunak Patel, Het Patel
 
 
 :wolf::computer:
