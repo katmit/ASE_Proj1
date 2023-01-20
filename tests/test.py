@@ -7,7 +7,7 @@ import sys
 import traceback
 
 sys.path.append(os.path.abspath('../'))
-from src.main import get_seed, should_dump, get_crashing_behavior_message
+from src.script import get_seed, should_dump, get_crashing_behavior_message
 from src.num import Num
 from src.sym import Sym
 
